@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+  <h:head>
+    <title>Example application with #{data.examples.size()} examples!</title>
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css"></link>
+  </h:head>
+
+  <h:body>
+
+    <div class="container-fluid">
+      <div class="sidebar">
+      </div>
+      <div class="content">
+
+        <h:form>
+          <p:growl id="messages" showDetail="true" styleClass="alert-message warning"/>  
+        </h:form>
+
+        <p>
+          Example application with #{data.examples.size()} examples!
+        </p><p>
+          Examples:
+          <ul>
+            <ui:repeat var="x" value="#{data.examples}">
+              <li>#{x.name}</li>
+            </ui:repeat>
+          </ul>
+        </p><p>
+          Comedies:
+          <ul>
+            <ui:repeat var="x" value="#{data.comedies}">
+              <li>#{x.name}</li>
+            </ui:repeat>
+          </ul>
+        </p><p>
+          <p:dataTable var="x" value="#{data.examples}" tableStyleClass="zebra-striped">
+            <p:column sortBy="#{x.id}">
+              <f:facet name="header">id</f:facet>
+              <h:outputText value="#{x.id}" />
+            </p:column>
+            <p:column sortBy="#{x.name.toUpperCase()}">
+              <f:facet name="header">Name</f:facet>
+              <h:outputText value="#{x.name}" escape="false" />
+            </p:column>
+          </p:dataTable>
+        </p><p>
+          <h:form>
+            <h:inputText id="newExample" value="#{data.newExampleText}" />
+            <h:commandButton value="Save" action="#{data.createExample()}" styleClass="btn primary" />
+            <h:commandButton value="Reload" action="#{data.refreshData()}" styleClass="btn" />
+            <h:commandButton value="End" action="#{data.endConversation()}" styleClass="btn danger" />
+          </h:form>
+        </p>
+
+      </div>
+    </div>
+
+  </h:body>
+
+</html>
