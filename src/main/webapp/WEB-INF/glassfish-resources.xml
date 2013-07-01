@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "https://glassfish.java.net/dtds/glassfish-resources_1_5.dtd">
+<resources>
+
+    <jdbc-connection-pool name="ExamplePool"
+                          datasource-classname="org.postgresql.ds.PGConnectionPoolDataSource"
+                          res-type="javax.sql.ConnectionPoolDataSource">
+        <property name="databaseName" value="mikael"/>
+        <property name="user" value="mikael"/>
+        <property name="password" value=""/>
+    </jdbc-connection-pool>
+
+    <jdbc-resource enabled="true" jndi-name="java:app/jdbc/examples" object-type="user" pool-name="ExamplePool" />
+
+</resources>
