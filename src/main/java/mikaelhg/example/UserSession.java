@@ -1,4 +1,4 @@
-package com.gueck.javaee6;
+package mikaelhg.example;
 
 import javax.ejb.Stateful;
 import javax.enterprise.context.SessionScoped;

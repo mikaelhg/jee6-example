@@ -1,4 +1,4 @@
-package com.gueck.javaee6;
+package mikaelhg.example;
 
 import java.io.Serializable;
 import javax.persistence.*;

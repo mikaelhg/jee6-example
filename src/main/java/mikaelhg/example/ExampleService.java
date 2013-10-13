@@ -1,29 +1,25 @@
-package com.gueck.javaee6;
+package mikaelhg.example;
 
-import java.io.Serializable;
-import java.util.List;
+import org.joda.time.DateTime;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateful;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
-import javax.inject.Inject;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.apache.myfaces.extensions.cdi.core.api.scope.conversation.Conversation;
-import org.apache.myfaces.extensions.cdi.core.api.scope.conversation.ConversationScoped;
-import org.joda.time.DateTime;
+import java.io.Serializable;
+import java.util.List;
 
 @Stateful
 @Named("data")
-@ConversationScoped
+@SessionScoped
 public class ExampleService implements Serializable {
 
     @PersistenceContext
     private EntityManager em;
-
-    @Inject
-    private Conversation conversation;
 
     private List<Example> examples;
 
@@ -49,11 +45,6 @@ public class ExampleService implements Serializable {
         em.persist(new Example(newExampleText));
         newExampleText = "";
         refreshData();
-    }
-
-    public void endConversation() {
-        System.out.println(DateTime.now() + " endConversation");
-        conversation.restart();
     }
 
     public List<Example> getExamples() {
